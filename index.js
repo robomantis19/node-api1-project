@@ -26,6 +26,20 @@ server.get('/api/hubs/', (req, res) => {
     })
 })
 
+server.get('/api/hubs/:id', (req, res) => { 
+    Hubs.findById(req.params.id)
+    .then(hubs => { 
+        console.log('hubs by id', hubs); 
+        res.status(200).json(hubs);
+    })
+    .catch(err => { 
+        console.log(err); 
+        res.status(500).json({
+            errorMessage: 'sorry, error on get request by id'
+        })
+    })
+})
+
 
 
 const port = 8000; 
